@@ -4,8 +4,7 @@
 <h2>Project Description</h2>
 <p>Aplikasi ini memudahkan pelanggan untuk mencari aplikasi yang berlangganan seperti game atau streaming service yang akan dibeli. Di dalamnya user dapat membeli, melihat, mengedit seberapa lama user yang inginkan dan dapat menghapus transaksi tersebut. Aplikasi ini juga menggunakan database Firebase dan menggunakan autentikasi Firebase untuk proses Login</p>
 <h2>Use Case</h2>
-<p align = "center">![usecase](https://github.com/RoqiSB/UAS_PAM/assets/114916261/a4becc41-f8ed-4c89-85e4-e1322f0626dd)
-</p>
+<img width="568" alt="image" src="https://github.com/RoqiSB/UAS_PAM/assets/114916261/0434c4ec-357b-42d3-895b-fd2692f5b95b">
 <p>Register = User dapat daftar akun untuk mengakses aplikasi</p>
 <p>Login = User dapat masuk ke aplikasi tersebut tapi harus register dahulu</p>
 <p>Add Values Item = User dapat menambahkan transaksi yang akan dibeli</p>
