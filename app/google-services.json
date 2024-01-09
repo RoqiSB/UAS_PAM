@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "867089587939",
+    "project_id": "login-register-30813",
+    "storage_bucket": "login-register-30813.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:867089587939:android:56cded28d2ef7dbc2bafd6",
+        "android_client_info": {
+          "package_name": "com.example.uaspam"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIpgUW77fVMhmKIg4YtqoBegwdnfIAQVw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

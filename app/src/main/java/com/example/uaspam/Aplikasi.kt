@@ -1,6 +1,9 @@
 package com.example.uaspam
 
 import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
 
-class Aplikasi:Application {
+
+@HiltAndroidApp
+class Aplikasi:Application() {
 }
