@@ -33,6 +33,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.uaspam.model.Aplikasi
 import com.example.uaspam.navigation.DestinasiNavigasi
+import com.example.uaspam.ui.LanggananTopAppBar
 import com.example.uaspam.ui.PenyediaViewModel
 
 object DestinasiHome : DestinasiNavigasi {
@@ -53,11 +54,11 @@ fun HomeScreen(
     Scaffold(
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
-//            SiswaTopAppBar(
-//                title = DestinasiHome.titleRes,
-//                canNavigateBack = false,
-//                scrollBehavior = scrollBehavior
-//            )
+            LanggananTopAppBar(
+                title = DestinasiHome.titleRes,
+                canNavigateBack = false,
+                scrollBehavior = scrollBehavior
+            )
         },
         floatingActionButton = {
             FloatingActionButton(

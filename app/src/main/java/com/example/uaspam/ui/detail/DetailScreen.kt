@@ -35,6 +35,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.uaspam.model.Aplikasi
 import com.example.uaspam.navigation.DestinasiNavigasi
 import com.example.uaspam.ui.DetailUIState
+import com.example.uaspam.ui.LanggananTopAppBar
 import com.example.uaspam.ui.PenyediaViewModel
 import com.example.uaspam.ui.toApp
 import kotlinx.coroutines.launch
@@ -59,6 +60,11 @@ fun DetailScreen(
     val coroutineScope = rememberCoroutineScope()
     Scaffold(
         topBar = {
+            LanggananTopAppBar(
+                title = DetailDestination.titleRes,
+                canNavigateBack = true,
+                navigateUp = navigateBack
+            )
         }, floatingActionButton = {
             FloatingActionButton(
                 onClick = { navigateToEditItem(uiState.value.addEvent.id) },

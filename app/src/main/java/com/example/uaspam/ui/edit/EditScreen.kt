@@ -11,6 +11,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.uaspam.navigation.DestinasiNavigasi
+import com.example.uaspam.ui.LanggananTopAppBar
 import com.example.uaspam.ui.PenyediaViewModel
 import com.example.uaspam.ui.add.EntryBody
 import kotlinx.coroutines.launch
@@ -32,13 +33,13 @@ fun EditScreen(
 ) {
     val coroutineScope = rememberCoroutineScope()
     Scaffold(
-//        topBar = {
-//            SiswaTopAppBar(
-//                title =EditDestination.titleRes,
-//                canNavigateBack = true,
-//                navigateUp = onNavigateUp
-//            )
-//        },
+        topBar = {
+            LanggananTopAppBar(
+                title =EditDestination.titleRes,
+                canNavigateBack = true,
+                navigateUp = onNavigateUp
+            )
+        },
         modifier = modifier
     ) { innerPadding ->
         EntryBody(
