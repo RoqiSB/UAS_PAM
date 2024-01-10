@@ -3,7 +3,7 @@ package com.example.uaspam.ui
 import com.example.uaspam.model.Aplikasi
 
 
-data class AddUIState(
+data class AddUIAppState(
     val addEvent: AddEvent = AddEvent(),
 )
 
@@ -33,7 +33,7 @@ fun Aplikasi.toDetailApp(): AddEvent =
         harga = harga
     )
 
-fun Aplikasi.toUIStateApp(): AddUIState = AddUIState(
+fun Aplikasi.toUIStateApp(): AddUIAppState = AddUIAppState(
     addEvent = this.toDetailApp()
 )
 
