@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.uaspam.navigation.DestinasiNavigasi
 import com.example.uaspam.ui.AddEvent
-import com.example.uaspam.ui.AddUIState
+import com.example.uaspam.ui.AddUIAppState
 import com.example.uaspam.ui.PenyediaViewModel
 import kotlinx.coroutines.launch
 
@@ -70,7 +70,7 @@ fun AddScreen(
 
 @Composable
 fun EntryBody(
-    addUIState: AddUIState,
+    addUIState: AddUIAppState,
     onAplikasiValueChange: (AddEvent) -> Unit,
     onSaveClick: () -> Unit,
     modifier: Modifier = Modifier
