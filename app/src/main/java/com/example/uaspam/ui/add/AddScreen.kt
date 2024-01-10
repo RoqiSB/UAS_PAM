@@ -29,7 +29,7 @@ import kotlinx.coroutines.launch
 
 object DestinasiEntry : DestinasiNavigasi {
     override val route = "item_entry"
-    override val titleRes = "Entry Siswa"
+    override val titleRes = "Entry Aplikasi"
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -53,7 +53,7 @@ fun AddScreen(
 
         EntryBody(
             addUIState = addViewModel.addUIState,
-            onSiswaValueChange = addViewModel::updateAddUIState,
+            onAplikasiValueChange = addViewModel::updateAddUIState,
             onSaveClick = {
                 coroutineScope.launch {
                     addViewModel.addAplikasi()
@@ -71,7 +71,7 @@ fun AddScreen(
 @Composable
 fun EntryBody(
     addUIState: AddUIState,
-    onSiswaValueChange: (AddEvent) -> Unit,
+    onAplikasiValueChange: (AddEvent) -> Unit,
     onSaveClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -81,7 +81,7 @@ fun EntryBody(
     ) {
         FormInput(
             addEvent = addUIState.addEvent,
-            onValueChange = onSiswaValueChange,
+            onValueChange = onAplikasiValueChange,
             modifier = Modifier.fillMaxWidth()
         )
         Button(
