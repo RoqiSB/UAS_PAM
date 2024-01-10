@@ -2,6 +2,7 @@ package com.example.uaspam.data
 
 import com.google.firebase.firestore.FirebaseFirestore
 
+
 interface AppContainer {
     val appRepository: AppRepository
 }
