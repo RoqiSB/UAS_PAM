@@ -100,6 +100,9 @@ fun SignUpScreen(
         
         Button(onClick = {
 
+                scope.launch {
+                    viewModel.registerUser(email, password)
+                }
         },modifier = Modifier
             .fillMaxWidth()
             .padding(top = 20.dp, start = 30.dp, end = 30.dp), colors = ButtonDefaults.buttonColors(),
