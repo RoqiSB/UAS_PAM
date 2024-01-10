@@ -24,6 +24,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.uaspam.navigation.DestinasiNavigasi
 import com.example.uaspam.ui.AddEvent
 import com.example.uaspam.ui.AddUIAppState
+import com.example.uaspam.ui.LanggananTopAppBar
 import com.example.uaspam.ui.PenyediaViewModel
 import kotlinx.coroutines.launch
 
@@ -46,7 +47,12 @@ fun AddScreen(
     Scaffold(
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
-
+            LanggananTopAppBar(
+                title = DestinasiEntry.titleRes,
+                canNavigateBack = true,
+                scrollBehavior = scrollBehavior,
+                navigateUp = navigateBack
+            )
 
         }
     ) { innerPadding ->

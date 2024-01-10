@@ -40,7 +40,7 @@ fun LanggananApp(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AppTopAppBar(
+fun LanggananTopAppBar(
     title: String,
     canNavigateBack: Boolean,
     modifier: Modifier = Modifier,

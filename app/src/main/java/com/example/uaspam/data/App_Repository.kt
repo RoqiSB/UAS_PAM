@@ -20,7 +20,7 @@ interface AppRepository {
 }
 
 class AppRepositoryImpl(private val firestore: FirebaseFirestore) : AppRepository {
-    override fun getall(): Flow<List<Aplikasi>> = flow {
+    override fun getAll(): Flow<List<Aplikasi>> = flow {
         val snapshot = firestore.collection("Aplikasi")
             .orderBy("nama", Query.Direction.ASCENDING)
             .get()
@@ -29,9 +29,11 @@ class AppRepositoryImpl(private val firestore: FirebaseFirestore) : AppRepositor
         emit(aplikasi)
     }.flowOn(Dispatchers.IO)
 
+
     override suspend fun save(aplikasi: Aplikasi): String {
         return try {
             val documentReference = firestore.collection("Aplikasi").add(aplikasi).await()
+            // Update the Kontak with the Firestore-generated DocumentReference
             firestore.collection("Aplikasi").document(documentReference.id)
                 .set(aplikasi.copy(id = documentReference.id))
             "Berhasil + ${documentReference.id}"
@@ -40,19 +42,21 @@ class AppRepositoryImpl(private val firestore: FirebaseFirestore) : AppRepositor
             "Gagal $e"
         }
     }
+
     override suspend fun update(aplikasi: Aplikasi) {
         firestore.collection("Aplikasi").document(aplikasi.id).set(aplikasi).await()
     }
 
-    override suspend fun delete(aplikasiId: String) {
-        firestore.collection("Aplikasi").document(aplikasiId).delete().await()
+    override suspend fun delete(appId: String) {
+        firestore.collection("Aplikasi").document(appId).delete().await()
     }
 
-    override fun getKontakById(aplikasiId: String): Flow<Aplikasi> {
+    override fun getAplikasiById(appId: String): Flow<Aplikasi> {
         return flow {
-            val snapshot = firestore.collection("Aplikasi").document(aplikasiId).get().await()
+            val snapshot = firestore.collection("Aplikasi").document(appId).get().await()
             val aplikasi = snapshot.toObject(Aplikasi::class.java)
             emit(aplikasi!!)
         }.flowOn(Dispatchers.IO)
     }
+
 }
