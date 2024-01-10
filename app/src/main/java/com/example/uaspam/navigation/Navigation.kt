@@ -15,14 +15,15 @@ fun NavigationGraph(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Screens.SignInScreen.route
+        startDestination = Screens.SignUpScreen.route
     ) {
-        composable(route = Screens.SignInScreen.route) {
-            SignInScreen()
 
-        }
         composable(route = Screens.SignUpScreen.route) {
             SignUpScreen(navController)
+
+        }
+        composable(route = Screens.SignInScreen.route) {
+            SignInScreen()
 
         }
     }

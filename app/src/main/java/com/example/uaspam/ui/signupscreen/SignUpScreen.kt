@@ -2,6 +2,7 @@ package com.example.uaspam.ui.signupscreen
 
 import android.widget.Toast
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -41,128 +42,167 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.example.uaspam.R
+import com.example.uaspam.navigation.Screens
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SignUpScreen(
+    navController: NavController,
     viewModel: SignUpViewModel = hiltViewModel()
-){
-
+) {
     var email by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
     val scope = rememberCoroutineScope()
-    var context = LocalContext.current
+    val context = LocalContext.current
     val state = viewModel.signUpState.collectAsState(initial = null)
 
-
-    Column (
+    Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(start = 30.dp, end = 30.dp),
-        verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally
-    ){
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            modifier = Modifier.padding(bottom = 10.dp),
+            text = "Create Account",
+            fontWeight = FontWeight.Bold,
+            fontSize = 35.sp,
+            fontFamily = FontFamily.Default,
+        )
         Text(
             text = "Enter your credential's to register",
             fontWeight = FontWeight.Medium,
-            fontSize = 15.sp,
-            color = Color.Gray,
-            fontFamily = FontFamily.Default
+            fontSize = 15.sp, color = Color.Gray,
+            fontFamily = FontFamily.Default,
 
-        )
+            )
         TextField(
+            modifier = Modifier.fillMaxWidth(),
             value = email,
-            onValueChange = {
-                email = it
-        },
-            modifier = Modifier.fillMaxWidth()
-                .background(Color.Cyan),
             colors = TextFieldDefaults.textFieldColors(
                 cursorColor = Color.Black,
-                disabledLabelColor = Color.Cyan, unfocusedLabelColor = Color.Transparent,
-                focusedIndicatorColor = Color.Transparent
-            ), shape = RoundedCornerShape(8.dp), singleLine = true, placeholder = {
+                disabledLabelColor = Color.Cyan,
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent
+            ),
+            onValueChange = {
+                email = it
+
+            },
+            shape = RoundedCornerShape(8.dp),
+            singleLine = true,
+            placeholder = {
                 Text(text = "Email")
             }
         )
-        Spacer(modifier = Modifier.height(16.dp))
 
-        TextField(value = password, onValueChange = {
-            password = it
-        },
+        Spacer(modifier = Modifier.height(16.dp))
+        TextField(
             modifier = Modifier.fillMaxWidth(),
+            value = password,
             colors = TextFieldDefaults.textFieldColors(
                 cursorColor = Color.Black,
-                disabledLabelColor = Color.Cyan, unfocusedLabelColor = Color.Transparent,
+                disabledLabelColor = Color.Cyan,
                 focusedIndicatorColor = Color.Transparent,
-            ), shape = RoundedCornerShape(8.dp), singleLine = true, placeholder = {
+                unfocusedIndicatorColor = Color.Transparent
+            ),
+            onValueChange = {
+                password = it
+            },
+            shape = RoundedCornerShape(8.dp),
+            singleLine = true,
+            placeholder = {
                 Text(text = "Password")
             }
         )
-        
-        Button(onClick = {
-
+        Button(
+            onClick = {
                 scope.launch {
                     viewModel.registerUser(email, password)
                 }
-        },modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 20.dp, start = 30.dp, end = 30.dp), colors = ButtonDefaults.buttonColors(),
-            shape = RoundedCornerShape(15.dp)) {
-            Text(text = "Sign Up", color = Color.White, modifier = Modifier.padding(7.dp))}
-            Row (modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center){
-                if ( state.value?.isLoading == true){
-                    CircularProgressIndicator()
-                }
-            }
+            },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 20.dp, start = 30.dp, end = 30.dp),
+            colors = ButtonDefaults.buttonColors(
+                Color.Black,
+                contentColor = Color.White
+            ),
+            shape = RoundedCornerShape(15.dp)
+        ) {
             Text(
-                text = "Already Have an Account? Sign in",
-                fontWeight = FontWeight.Bold,
-                color = Color.Black,
-                fontFamily = FontFamily.Default
-            )
-            Text(text = "or connect with", fontWeight = FontWeight.Medium, color = Color.Gray)
-            Row (
+                text = "Sign Up",
+                color = Color.White,
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 10.dp),
-                horizontalArrangement = Arrangement.Center
-            ){
-                IconButton(onClick = { /*TODO*/ }) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.google),
-                        contentDescription = "Google Icon",
-                        modifier = Modifier.size(50.dp),
-                        tint = Color.Unspecified
-                        )
-                }
-                Spacer(modifier = Modifier.width(20.dp))
-                IconButton(onClick = { /*TODO*/ }) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.facebook),
-                        contentDescription = "Facebook Icon",
-                        modifier = Modifier.size(50.dp),
-                        tint = Color.Unspecified
-                    )
-                }
-                LaunchedEffect(key1 = state.value?.isSuccess){
-                    scope.launch {
-                        if (state.value?.isSuccess?.isNotEmpty() == true){
-                            val success = state.value?.isSuccess
-                            Toast.makeText(context,"${success}",Toast.LENGTH_LONG).show()
-                        }
-                    }
-                }
-                LaunchedEffect(key1 = state.value?.isError){
-                    scope.launch {
-                        if (state.value?.isError?.isNotEmpty() == true){
-                            val error = state.value?.isError
-                            Toast.makeText(context,"${error}",Toast.LENGTH_LONG).show()
-                        }
-                    }
-                }
+                    .padding(7.dp)
+            )
+        }
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
+            if (state.value?.isLoading == true) {
+                CircularProgressIndicator()
+            }
+        }
+        Text(
+            modifier = Modifier
+                .padding(15.dp)
+                .clickable {
+                    navController.navigate(Screens.SignInScreen.route)
+                },
+            text = "Already Have an account? sign In",
+            fontWeight = FontWeight.Bold, color = Color.Black, fontFamily = FontFamily.Default
+        )
+        Text(
+            modifier = Modifier
+                .padding(
+                    top = 40.dp,
+                ),
+            text = "Or connect with",
+            fontWeight = FontWeight.Medium, color = Color.Gray
+        )
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 10.dp), horizontalArrangement = Arrangement.Center
+        ) {
+            IconButton(onClick = { /*TODO*/ }) {
+                Icon(
+                    modifier = Modifier.size(50.dp),
+                    painter = painterResource(id = R.drawable.google),
+                    contentDescription = "Google Icon", tint = Color.Unspecified
+                )
+            }
+            Spacer(modifier = Modifier.width(20.dp))
+            IconButton(onClick = {
+
+            }) {
+                Icon(
+                    modifier = Modifier.size(52.dp),
+                    painter = painterResource(id = R.drawable.facebook),
+                    contentDescription = "Google Icon", tint = Color.Unspecified
+                )
             }
 
+        }
+    }
+
+    LaunchedEffect(key1 = state.value?.isSuccess) {
+        scope.launch {
+            if (state.value?.isSuccess?.isNotEmpty() == true) {
+                val success = state.value?.isSuccess
+                Toast.makeText(context, "$success", Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+    LaunchedEffect(key1 = state.value?.isError) {
+        scope.launch {
+            if (state.value?.isError?.isNotBlank() == true) {
+                val error = state.value?.isError
+                Toast.makeText(context, "$error", Toast.LENGTH_LONG).show()
+            }
+        }
     }
 }

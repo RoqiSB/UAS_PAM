@@ -54,25 +54,10 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SignInScreen(
-    viewModel: SignInViewModel = hiltViewModel()
+    viewModel: SignInViewModel = hiltViewModel(),
+
 ) {
 
-    val googleSignInState = viewModel.googleState.value
-
-
-
-
-    val launcher =
-        rememberLauncherForActivityResult(contract = ActivityResultContracts.StartActivityForResult()) {
-            val account = GoogleSignIn.getSignedInAccountFromIntent(it.data)
-            try {
-                val result = account.getResult(ApiException::class.java)
-                val credentials = GoogleAuthProvider.getCredential(result.idToken, null)
-                viewModel.googleSignIn(credentials)
-            } catch (it: ApiException) {
-                print(it)
-            }
-        }
 
 
     var email by rememberSaveable { mutableStateOf("") }
@@ -162,12 +147,12 @@ fun SignInScreen(
             IconButton(onClick = {
                 val gso= GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                     .requestEmail()
-                    .requestIdToken()
+
                     .build()
 
                 val googleSingInClient = GoogleSignIn.getClient(context, gso)
 
-                launcher.launch(googleSingInClient.signInIntent)
+
 
             }) {
                 Icon(
@@ -206,19 +191,8 @@ fun SignInScreen(
                 }
             }
 
-            LaunchedEffect(key1 = googleSignInState.success) {
-                scope.launch {
-                    if (googleSignInState.success != null) {
-                        Toast.makeText(context, "Sign In Success", Toast.LENGTH_LONG).show()
-                    }
-                }
-            }
 
-        }
-        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
-            if (googleSignInState.loading){
-                CircularProgressIndicator()
-            }
+
         }
 
 
