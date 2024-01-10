@@ -1,6 +1,7 @@
 package com.example.uaspam.ui.signupscreen
 
 import android.widget.Toast
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -67,6 +68,7 @@ fun SignUpScreen(
             fontWeight = FontWeight.Medium,
             fontSize = 15.sp,
             color = Color.Gray,
+            fontFamily = FontFamily.Default
 
         )
         TextField(
@@ -74,7 +76,8 @@ fun SignUpScreen(
             onValueChange = {
                 email = it
         },
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth()
+                .background(Color.Cyan),
             colors = TextFieldDefaults.textFieldColors(
                 cursorColor = Color.Black,
                 disabledLabelColor = Color.Cyan, unfocusedLabelColor = Color.Transparent,
@@ -106,10 +109,8 @@ fun SignUpScreen(
         },modifier = Modifier
             .fillMaxWidth()
             .padding(top = 20.dp, start = 30.dp, end = 30.dp), colors = ButtonDefaults.buttonColors(),
-            shape = RoundedCornerShape(15.dp)
-        )
-        {
-            Text(text = "Sign Up", color = Color.White, modifier = Modifier.padding(7.dp))
+            shape = RoundedCornerShape(15.dp)) {
+            Text(text = "Sign Up", color = Color.White, modifier = Modifier.padding(7.dp))}
             Row (modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center){
                 if ( state.value?.isLoading == true){
                     CircularProgressIndicator()
@@ -162,6 +163,6 @@ fun SignUpScreen(
                     }
                 }
             }
-        }
+
     }
 }
