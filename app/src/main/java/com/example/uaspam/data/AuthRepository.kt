@@ -1,6 +1,5 @@
 package com.example.uaspam.data
 
-import com.example.uaspam.util.Resource
 import com.google.firebase.auth.AuthResult
 import kotlinx.coroutines.flow.Flow
 
