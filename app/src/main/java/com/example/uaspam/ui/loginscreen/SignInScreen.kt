@@ -57,9 +57,6 @@ fun SignInScreen(
     viewModel: SignInViewModel = hiltViewModel(),
 
 ) {
-
-
-
     var email by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
     val scope = rememberCoroutineScope()
@@ -123,7 +120,9 @@ fun SignInScreen(
             ),
             shape = RoundedCornerShape(15.dp)
         ) {
-            Text(text = "Sign In", color = Color.White, modifier = Modifier.padding(7.dp))
+
+            Text(text = "Sign In", color = Color.White, modifier = Modifier.padding(7.dp)
+            )
         }
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
             if (state.value?.isLoading == true) {

@@ -16,6 +16,8 @@ import com.example.uaspam.ui.edit.EditDestination
 import com.example.uaspam.ui.edit.EditScreen
 import com.example.uaspam.ui.homescreen.DestinasiHome
 import com.example.uaspam.ui.homescreen.HomeScreen
+import com.example.uaspam.ui.loginscreen.SignInScreen
+import com.example.uaspam.ui.signupscreen.SignUpScreen
 
 @Composable
 fun PengelolaHalaman(navController: NavHostController = rememberNavController()) {
@@ -25,6 +27,14 @@ fun PengelolaHalaman(navController: NavHostController = rememberNavController())
         startDestination = DestinasiHome.route,
         modifier = Modifier
     ) {
+        composable(route = Screens.SignUpScreen.route) {
+            SignUpScreen(navController)
+
+        }
+        composable(route = Screens.SignInScreen.route) {
+            SignInScreen()
+
+        }
         composable(
             DestinasiHome.route
         ) {
