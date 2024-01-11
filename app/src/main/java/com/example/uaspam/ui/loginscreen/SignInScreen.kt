@@ -42,21 +42,30 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.uaspam.R
+import com.example.uaspam.navigation.DestinasiNavigasi
+import com.example.uaspam.ui.PenyediaViewModel
+import com.example.uaspam.ui.homescreen.DestinasiHome
+import com.example.uaspam.ui.homescreen.HomeScreen
 import com.example.uaspam.ui.signupscreen.SignUpViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.coroutines.launch
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SignInScreen(
-    viewModel: SignInViewModel = hiltViewModel(),
+    navController: NavController,
 
-) {
+    viewModel: SignInViewModel = hiltViewModel()
+
+
+    ) {
     var email by rememberSaveable { mutableStateOf("") }
     var password by rememberSaveable { mutableStateOf("") }
     val scope = rememberCoroutineScope()
@@ -177,6 +186,7 @@ fun SignInScreen(
                     if (state.value?.isSuccess?.isNotEmpty() == true) {
                         val success = state.value?.isSuccess
                         Toast.makeText(context, "${success}", Toast.LENGTH_LONG).show()
+                        navController.navigate("home")
                     }
                 }
             }

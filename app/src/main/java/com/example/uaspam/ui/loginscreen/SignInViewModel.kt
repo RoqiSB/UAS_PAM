@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.uaspam.data.AuthRepository
+import com.example.uaspam.navigation.DestinasiNavigasi
 import com.example.uaspam.util.Resource
 import com.google.firebase.auth.AuthCredential
 import dagger.hilt.android.lifecycle.HiltViewModel

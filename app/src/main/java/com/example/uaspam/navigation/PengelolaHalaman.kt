@@ -18,13 +18,15 @@ import com.example.uaspam.ui.homescreen.DestinasiHome
 import com.example.uaspam.ui.homescreen.HomeScreen
 import com.example.uaspam.ui.loginscreen.SignInScreen
 import com.example.uaspam.ui.signupscreen.SignUpScreen
+import com.google.firebase.auth.FirebaseAuth
 
 @Composable
 fun PengelolaHalaman(navController: NavHostController = rememberNavController()) {
-
+    val auth = FirebaseAuth.getInstance()
     NavHost(
+
         navController = navController,
-        startDestination = DestinasiHome.route,
+        startDestination = Screens.SignUpScreen.route,
         modifier = Modifier
     ) {
         composable(route = Screens.SignUpScreen.route) {
@@ -32,7 +34,7 @@ fun PengelolaHalaman(navController: NavHostController = rememberNavController())
 
         }
         composable(route = Screens.SignInScreen.route) {
-            SignInScreen()
+            SignInScreen(navController)
 
         }
         composable(
