@@ -5,8 +5,9 @@ data class Aplikasi(
     val id: String,
     val nama: String,
     val ketr: String,
-    val harga: String
+    val harga: String,
+    val listapps: String
 
 ){
-    constructor(): this("","","", "")
+    constructor(): this("","","", "", "")
 }

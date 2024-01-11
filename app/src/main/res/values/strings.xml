@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">UASPAM</string>
+    <string name="apps">List Aplikasi</string>
+    <string name="spotify">Spotify</string>
+    <string name="youtube">YouTube</string>
+    <string name="discord">Discord</string>
+    <string name="twitch">Twitch</string>
 </resources>

@@ -155,6 +155,13 @@ fun ItemDetails(
                 )
             )
             ItemDetailsRow(
+                labelResID = "Aplikasi",
+                itemDetail = aplikasi.listapps,
+                modifier = Modifier.padding(
+                    horizontal = 12.dp
+                )
+            )
+            ItemDetailsRow(
                 labelResID = "Keterangan",
                 itemDetail = aplikasi.ketr,
                 modifier = Modifier.padding(

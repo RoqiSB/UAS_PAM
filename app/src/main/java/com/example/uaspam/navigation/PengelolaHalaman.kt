@@ -84,8 +84,8 @@ fun PengelolaHalaman(navController: NavHostController = rememberNavController())
                 type = NavType.StringType
             })
         ) { backStackEntry ->
-            val kontakId = backStackEntry.arguments?.getString(EditDestination.appid)
-            kontakId?.let {
+            val appId = backStackEntry.arguments?.getString(EditDestination.appid)
+            appId?.let {
                 EditScreen(
                     navigateBack = { navController.popBackStack() },
                     onNavigateUp = { navController.navigateUp() }

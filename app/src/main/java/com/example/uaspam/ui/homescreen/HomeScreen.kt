@@ -37,6 +37,8 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -159,29 +161,44 @@ fun DataApp(
 ) {
     Card(
         modifier = modifier,
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
+        shape = MaterialTheme.shapes.medium,
+        colors = CardDefaults.cardColors(Color.Gray)
+
     ) {
         Column(
-            modifier = Modifier.padding(12.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+            modifier = Modifier
+                .padding(12.dp)
+                .fillMaxWidth(),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
-            Row(
-                modifier = Modifier.fillMaxWidth()
+            Card(
+                colors = CardDefaults.cardColors(Color.Gray)
             ) {
+                Column(
+                    modifier = Modifier.padding(8.dp),
+                    horizontalAlignment = Alignment.Start
+                ) {
+                    Text(
+                        text = aplikasi.nama,
+                        style = MaterialTheme.typography.titleLarge,
+                    )
+                    Text(
+                        text = aplikasi.listapps,
+                        style = MaterialTheme.typography.titleMedium,
+                    )
+                    Spacer(Modifier.weight(1f))
+                    Text(
+                        text = aplikasi.harga,
+                        style = MaterialTheme.typography.titleMedium
+                    )
+                }
                 Text(
-                    text = aplikasi.nama,
-                    style = MaterialTheme.typography.titleLarge,
-                )
-                Spacer(Modifier.weight(1f))
-                Text(
-                    text = aplikasi.harga,
+                    text = aplikasi.ketr,
                     style = MaterialTheme.typography.titleMedium
                 )
             }
-            Text(
-                text = aplikasi.ketr,
-                style = MaterialTheme.typography.titleMedium
-            )
         }
+
     }
 }

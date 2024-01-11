@@ -12,13 +12,15 @@ data class AddEvent(
     val nama: String = "",
     val ketr: String = "",
     val harga: String = "",
+    val listapps: String = ""
 )
 
 fun AddEvent.toApp() = Aplikasi(
     id = id,
     nama = nama,
     ketr = ketr,
-    harga = harga
+    harga = harga,
+    listapps = listapps
 )
 
 data class DetailUIState(
@@ -30,12 +32,14 @@ fun Aplikasi.toDetailApp(): AddEvent =
         id = id,
         nama = nama,
         ketr = ketr,
-        harga = harga
+        harga = harga,
+        listapps = listapps
     )
 
 fun Aplikasi.toUIStateApp(): AddUIAppState = AddUIAppState(
     addEvent = this.toDetailApp()
 )
+
 
 data class HomeUIState(
     val listApp: List<com.example.uaspam.model.Aplikasi> = listOf(),
