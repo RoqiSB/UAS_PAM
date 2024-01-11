@@ -15,6 +15,7 @@ import com.example.uaspam.ui.detail.DetailScreen
 import com.example.uaspam.ui.edit.EditDestination
 import com.example.uaspam.ui.edit.EditScreen
 import com.example.uaspam.ui.homescreen.DestinasiHome
+import com.example.uaspam.ui.homescreen.FirstScreen
 import com.example.uaspam.ui.homescreen.HomeScreen
 import com.example.uaspam.ui.loginscreen.SignInScreen
 import com.example.uaspam.ui.signupscreen.SignUpScreen
@@ -26,9 +27,13 @@ fun PengelolaHalaman(navController: NavHostController = rememberNavController())
     NavHost(
 
         navController = navController,
-        startDestination = Screens.SignUpScreen.route,
+        startDestination = Screens.FirstScreen.route,
         modifier = Modifier
     ) {
+        composable(route = Screens.FirstScreen.route){
+            FirstScreen (navController)
+        }
+
         composable(route = Screens.SignUpScreen.route) {
             SignUpScreen(navController)
 
