@@ -3,6 +3,7 @@ package com.example.uaspam.ui.loginscreen
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -46,6 +47,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.uaspam.R
 import com.example.uaspam.navigation.DestinasiNavigasi
+import com.example.uaspam.navigation.Screens
 import com.example.uaspam.ui.PenyediaViewModel
 import com.example.uaspam.ui.homescreen.DestinasiHome
 import com.example.uaspam.ui.homescreen.HomeScreen
@@ -85,6 +87,7 @@ fun SignInScreen(
             color = Color.Gray,
             fontFamily = FontFamily.Default
         )
+        Spacer(modifier = Modifier.padding(5.dp))
         TextField(
             value = email,
             onValueChange = {
@@ -130,7 +133,8 @@ fun SignInScreen(
             shape = RoundedCornerShape(15.dp)
         ) {
 
-            Text(text = "Sign In", color = Color.White, modifier = Modifier.padding(7.dp)
+            Text(
+                text = "Sign In", color = Color.White, modifier = Modifier.padding(7.dp)
             )
         }
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
@@ -139,48 +143,15 @@ fun SignInScreen(
             }
 
         }
+        Spacer(modifier = Modifier.padding(8.dp))
         Text(
             text = "New User? Sign Up ",
             fontWeight = FontWeight.Bold,
             color = Color.Black,
-            fontFamily = FontFamily.Default
+            fontFamily = FontFamily.Default,
+            modifier = Modifier.clickable { navController.navigate(Screens.SignUpScreen.route) }
         )
-        Text(text = "or connect with", fontWeight = FontWeight.Medium, color = Color.Gray)
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 10.dp),
-            horizontalArrangement = Arrangement.Center
-        ) {
-            IconButton(onClick = {
-                val gso= GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                    .requestEmail()
-
-                    .build()
-
-                val googleSingInClient = GoogleSignIn.getClient(context, gso)
-
-
-
-            }) {
-                Icon(
-                    painter = painterResource(id = R.drawable.google),
-                    contentDescription = "Google Icon",
-                    modifier = Modifier.size(50.dp),
-                    tint = Color.Unspecified
-                )
-            }
-            Spacer(modifier = Modifier.width(20.dp))
-            IconButton(onClick = {
-
-            }) {
-                Icon(
-                    painter = painterResource(id = R.drawable.facebook),
-                    contentDescription = "Facebook Icon",
-                    modifier = Modifier.size(50.dp),
-                    tint = Color.Unspecified
-                )
-            }
+    }
             LaunchedEffect(key1 = state.value?.isSuccess) {
                 scope.launch {
                     if (state.value?.isSuccess?.isNotEmpty() == true) {
@@ -200,10 +171,4 @@ fun SignInScreen(
                 }
             }
 
-
-
         }
-
-
-    }
-}

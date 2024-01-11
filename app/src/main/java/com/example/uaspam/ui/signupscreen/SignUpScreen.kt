@@ -80,6 +80,7 @@ fun SignUpScreen(
             fontFamily = FontFamily.Default,
 
             )
+        Spacer(modifier = Modifier.padding(5.dp))
         TextField(
             modifier = Modifier.fillMaxWidth(),
             value = email,
@@ -155,38 +156,6 @@ fun SignUpScreen(
             text = "Already Have an account? sign In",
             fontWeight = FontWeight.Bold, color = Color.Black, fontFamily = FontFamily.Default
         )
-        Text(
-            modifier = Modifier
-                .padding(
-                    top = 40.dp,
-                ),
-            text = "Or connect with",
-            fontWeight = FontWeight.Medium, color = Color.Gray
-        )
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 10.dp), horizontalArrangement = Arrangement.Center
-        ) {
-            IconButton(onClick = { /*TODO*/ }) {
-                Icon(
-                    modifier = Modifier.size(50.dp),
-                    painter = painterResource(id = R.drawable.google),
-                    contentDescription = "Google Icon", tint = Color.Unspecified
-                )
-            }
-            Spacer(modifier = Modifier.width(20.dp))
-            IconButton(onClick = {
-
-            }) {
-                Icon(
-                    modifier = Modifier.size(52.dp),
-                    painter = painterResource(id = R.drawable.facebook),
-                    contentDescription = "Google Icon", tint = Color.Unspecified
-                )
-            }
-
-        }
     }
 
     LaunchedEffect(key1 = state.value?.isSuccess) {

@@ -16,7 +16,7 @@ class SignUpViewModel @Inject constructor(
     private val repository: AuthRepository
 ) : ViewModel() {
 
-    val _signUpState  = Channel<SignInState>()
+    val _signUpState  = Channel<SignUpState>()
     val signUpState  = _signUpState.receiveAsFlow()
 
 
@@ -24,14 +24,14 @@ class SignUpViewModel @Inject constructor(
         repository.registerUser(email, password).collect{result ->
             when(result){
                 is Resource.Success ->{
-                    _signUpState.send(SignInState(isSuccess = "Sign Up Success "))
+                    _signUpState.send(SignUpState(isSuccess = "Sign Up Success "))
                 }
                 is Resource.Loading ->{
-                    _signUpState.send(SignInState(isLoading = true))
+                    _signUpState.send(SignUpState(isLoading = true))
                 }
                 is Resource.Error ->{
 
-                    _signUpState.send(SignInState(isError = result.message))
+                    _signUpState.send(SignUpState(isError = result.message))
                 }
             }
 
