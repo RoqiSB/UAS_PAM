@@ -42,7 +42,7 @@ import kotlinx.coroutines.launch
 
 object DetailDestination : DestinasiNavigasi {
     override val route = "item_details"
-    override val titleRes = "Detail Aplikasi"
+    override val titleRes = "Detail Langganan Aplikasi"
     const val aplikasiId = "itemId"
     val routeWithArgs = "$route/{$aplikasiId}"
 }
@@ -170,7 +170,7 @@ fun ItemDetails(
             )
             ItemDetailsRow(
                 labelResID ="Harga",
-                itemDetail = aplikasi.harga,
+                itemDetail = "Rp." + aplikasi.harga,
                 modifier = Modifier.padding(
                     horizontal = 12.dp
                 )

@@ -36,7 +36,7 @@ import kotlinx.coroutines.launch
 
 object DestinasiEntry : DestinasiNavigasi {
     override val route = "item_entry"
-    override val titleRes = "Entry Langganan Aplikasi"
+    override val titleRes = "Add Langganan Aplikasi"
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -126,6 +126,13 @@ fun FormInput(
             enabled = enabled,
             singleLine = true
         )
+        RadioButtonGroup(
+            label = stringResource(R.string.apps),
+            options = SumberData.apps,
+            selectedOption = addEvent.listapps,
+            onOptionSelected = { onValueChange(addEvent.copy(listapps = it)) },
+            enabled = enabled
+        )
         OutlinedTextField(
             value = addEvent.ketr,
             onValueChange = { onValueChange(addEvent.copy(ketr = it)) },
@@ -143,13 +150,7 @@ fun FormInput(
             enabled = enabled,
             singleLine = true
         )
-        RadioButtonGroup(
-            label = stringResource(R.string.apps),
-            options = SumberData.apps,
-            selectedOption = addEvent.listapps,
-            onOptionSelected = { onValueChange(addEvent.copy(listapps = it)) },
-            enabled = enabled
-        )
+
 
     }
 }

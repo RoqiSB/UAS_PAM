@@ -41,6 +41,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.uaspam.R
 import com.example.uaspam.model.Aplikasi
@@ -159,11 +160,12 @@ fun DataApp(
     aplikasi: Aplikasi,
     modifier: Modifier = Modifier
 ) {
+    val image = painterResource(id = R.drawable.baseline_person_4_24)
     Card(
-        modifier = modifier,
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
+        modifier = modifier.padding(8.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
         shape = MaterialTheme.shapes.medium,
-        colors = CardDefaults.cardColors(Color.Gray)
+        colors = CardDefaults.cardColors(Color.LightGray)
 
     ) {
         Column(
@@ -172,33 +174,40 @@ fun DataApp(
                 .fillMaxWidth(),
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
-            Card(
-                colors = CardDefaults.cardColors(Color.Gray)
-            ) {
-                Column(
-                    modifier = Modifier.padding(8.dp),
-                    horizontalAlignment = Alignment.Start
+            Row (
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                verticalAlignment = Alignment.CenterVertically
+            ){
+                Image(painter = image, contentDescription = "")
+                Card(
+                    colors = CardDefaults.cardColors(Color.LightGray)
                 ) {
-                    Text(
-                        text = aplikasi.nama,
-                        style = MaterialTheme.typography.titleLarge,
-                    )
-                    Text(
-                        text = aplikasi.listapps,
-                        style = MaterialTheme.typography.titleMedium,
-                    )
-                    Spacer(Modifier.weight(1f))
-                    Text(
-                        text = aplikasi.harga,
-                        style = MaterialTheme.typography.titleMedium
-                    )
+                    Column(
+                        modifier = Modifier.padding(8.dp),
+                        horizontalAlignment = Alignment.Start
+                    ) {
+                        Text(
+                            text = aplikasi.nama,
+                            style = TextStyle(fontSize = 25.sp, fontFamily = FontFamily.SansSerif),
+                        )
+                        Text(
+                            text = aplikasi.listapps,
+                            style = TextStyle(fontFamily = FontFamily.SansSerif),
+                        )
+                        Text(
+                            text = aplikasi.ketr,
+                            style = TextStyle(fontFamily = FontFamily.SansSerif)
+                        )
+                        Text(
+                            text = "Rp." + aplikasi.harga,
+                            style = TextStyle(fontFamily = FontFamily.SansSerif)
+                        )
+
+                    }
+
                 }
-                Text(
-                    text = aplikasi.ketr,
-                    style = MaterialTheme.typography.titleMedium
-                )
             }
         }
-
     }
 }

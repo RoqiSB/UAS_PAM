@@ -153,7 +153,7 @@ fun SignUpScreen(
                 .clickable {
                     navController.navigate(Screens.SignInScreen.route)
                 },
-            text = "Already Have an account? sign In",
+            text = "Already Have an Account? Sign In",
             fontWeight = FontWeight.Bold, color = Color.Black, fontFamily = FontFamily.Default
         )
     }
